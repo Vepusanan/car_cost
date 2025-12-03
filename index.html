@@ -1,0 +1,181 @@
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Car Cost Analyzer</title>
+</head>
+<body>
+    <header>
+        <h1>Car Cost Analyzer</h1>
+		<h2>Calculate the cost that goes into your dream car for the life time of its usage</h2>
+        <!-- This is a comment 
+		<div style="text-align: right;">
+			<div class="button-like">
+				<a href="#home">Home</a>
+				<a href="#maintenance">Maintenance Cost Calc</a>
+				<a href="#operational">Operational Cost Calc</a>
+				<a href="#service">Service Cost Calc</a>
+				<a href="#other">Other Cost Calc</a>
+				<a href="#depreciation">Vehicle Depreciation Calc</a>
+			</div>
+		</div> -->
+    </header>
+    <main>
+        <h2>Basic Info</h2>
+        <section id="home">
+            
+            <p><b>In here you need to enter basic information regarding your vehicle to ensure an accurate calculation</b></p>
+            <form>
+                <label for="carName">Car Name:</label>
+                <input type="text" id="carName" name="carName">
+
+                <label for="carYear">Car model year:</label>
+                <select name="carYear" id="carYear">
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" >2024</option>
+                </select>
+
+                <label for="carTransmission">Car transmission type:</label>
+                <select name="carTransmission" id="carTransmission">
+                    <option value="" disabled selected>Select Transmission</option>
+                    <option value="auto">Automatic</option>
+                    <option value="manual">Manual</option>
+                </select>
+
+                <label for="carGas">Car Fuel type:</label>
+                <select name="carGas" id="carGas">
+                    <option value="" disabled selected>Select Fuel Type</option>
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                </select>
+
+                <label for="carPrice">Car price (Rs.):</label>
+                <input type="text" id="carPrice" name="carPrice">
+
+                <label for="carYrUse">Number of years planning to use the vehicle:</label>
+                <input type="text" id="carYrUse" name="carYrUse">
+
+                <label for="carTDmonth">Total travel distance per month (KM):</label>
+                <input type="text" id="carTDmonth" name="carTDmonth">
+
+                
+            </form>
+        </section>
+        
+        <h2>Maintenance Cost</h2>
+        <section id="maintenance">
+            <p><b>Maintenance cost is the cost incurred to keep the vehicle in good working condition. This includes regular tyre change, brake pad and liner replacements, transmission fluid, coolant and battery replacements and other routine maintenance tasks.</b></p>
+            <form>
+                <label for="tyreChangeCost">Tyre Change Cost (Rs.):</label>
+                <input type="text" id="tyreChangeCost" name="tyreChangeCost">
+
+                <label for="brakePadLinerCost">Brake Pad & Liner Cost (Rs.):</label>
+                <input type="text" id="brakePadLinerCost" name="brakePadLinerCost">
+
+                <label for="transmissionFluidCost">Transmission Fluid Cost (Rs.):</label>
+                <input type="text" id="transmissionFluidCost" name="transmissionFluidCost">
+
+                <label for="coolantReplaceCost">Coolant replacement Cost (Rs.):</label>
+                <input type="text" id="coolantReplaceCost" name="coolantReplaceCost">
+
+                <label for="batteryReplacementCost">Battery Replacement Cost (Rs.):</label>
+                <input type="text" id="batteryReplacementCost" name="batteryReplacementCost">
+
+                
+            </form>
+        </section>
+        
+        <h2>Operational Cost</h2>
+        <section id="operational">
+            <p><b>Operational cost is the cost incurred to operate the vehicle. This includes fuel costs and insurancerelated to using the vehicle.</b></p>
+            <form>
+                <label for="fuelCost">Fuel Cost (Rs.):</label>
+                <input type="text" id="fuelCost" name="fuelCost">
+
+                <label for="fuelEfficiency">Fuel Efficiency (KM/L):</label>
+                <input type="text" id="fuelEfficiency" name="fuelEfficiency">
+
+                <label for="carCostByInsurance">Car cost evaluated by Insurance (Rs.):</label>
+                <input type="text" id="carCostByInsurance" name="carCostByInsurance">
+
+                <label for="insuranceCost">Insurance Cost per year (%):</label>
+                <input type="text" id="insuranceCost" name="insuranceCost">
+
+                
+            </form>
+        </section>
+        
+        <h2>Service Cost</h2>
+        <section id="service">
+            <p><b>Service cost is the cost incurred to service the vehicle. This includes costs related to full service related expenses, vehicle emission test cost and car wash costs.</b></p>
+            <form>
+                <label for="vehicleEmissionCost">Vehicle Emission Test Cost (Rs.): </label>
+                <input type="text" id="vehicleEmissionCost" name="vehicleEmissionCost">
+
+                <label for="serviceCost">Full Service Cost (Rs.):</label>
+                <input type="text" id="serviceCost" name="serviceCost">
+
+                <label for="carWashCost">Car Wash Cost (Rs.):</label>
+                <input type="text" id="carWashCost" name="carWashCost">
+
+                
+            </form>
+        </section>
+        
+        <h2>Other Cost</h2>
+        <section id="other">
+            <p><b>Other costs are additional costs that may not fall under the previous categories. This can include lease payments and other miscellaneous expenses.</b></p>
+            <form>
+                <label for="supplementaryCost">Supplementary Cost (%):</label>
+                <input type="text" id="supplementaryCost" name="supplementaryCost">
+
+                <label for="lease">Lease amount (Rs.):</label>
+                <input type="text" id="lease" name="lease">
+
+                <label for="leaseRate">Lease Rate (%):</label>
+                <input type="text" id="leaseRate" name="leaseRate">
+
+                
+            </form>
+        </section>
+        <center>
+        <input type="submit" value="Calculate car cost" id="calc"> <br><br>
+
+        </center>
+        
+        <h2>Vehicle Depreciation</h2>
+        <section id="depreciation"></section>
+        
+        <h2>Final results</h2>
+        <section id="results"></section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Car Cost Calculator</p>
+    </footer>
+    <script src="logic.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,102 @@
+
+body {
+    background-color: #ECF0F1;
+    color: #2C3E50;
+    font-family: Arial, sans-serif;
+}
+header, footer {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    padding: 10px 0;
+    text-align: center;
+}
+h2 {
+    
+    color: #FFFFFF; /* White text */
+    background-color: #3498DB; /* Blue background */
+    padding: 10px 20px; /* Add padding for spacing */
+    border-radius: 15px; /* Rounded corners */
+    text-align: center; /* Center the text */
+    font-size: 24px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+    margin-bottom: 20px; /* Add spacing below the heading */
+    display: inline-block;  /* Make the border wrap only around the text */
+}
+section {
+    background-color: #FFFFFF;
+    border: 1px solid #2C3E50;
+    padding: 10px;
+    margin: 10px 0;
+}
+.accent {
+    color: #E67E22; /*use this to add this color to an important note*/
+}
+.button-like a { 
+    /*Used to style the menue in header*/
+    background-color: #3498DB;
+    color: #ECF0F1;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 16px; /* Slightly larger font size */
+    font-weight: bold; /* Bold text */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+.button-like a:hover {
+     /*Used to style the menue in header*/
+    background-color: #2980B9;
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+form {
+display: grid;
+grid-template-columns: 200px 1fr; /* Fixed width for labels and flexible width for inputs */
+gap: 10px; /* Space between rows and columns */
+align-items: center; /* Align items vertically */
+}
+form label {
+    text-align: right; /* Align labels to the right */
+    padding-right: 10px; /* Add some space between labels and inputs */
+}
+form input, form select {
+    padding: 5px;
+    border: 1px solid #2C3E50;
+    border-radius: 5px;
+    width: 100%; /* Make inputs take full width of their column */
+}
+form input[type="submit"] {
+    grid-column: span 2; /* Make the submit button span across both columns */
+    background-color: #3498DB;
+    color: #ECF0F1;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+form input[type="submit"]:hover {
+    background-color: #2980B9;
+}
+
+input[type="submit"] {
+    background-color: #2C3E50; /* Blue background */
+    color: #FFFFFF; /* White text */
+    font-size: 18px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    padding: 15px 30px; /* Bigger padding for a larger button */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+input[type="submit"]:hover {
+    background-color: #2C3E50; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
