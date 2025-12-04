@@ -1,181 +1,302 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Car Cost Analyzer</title>
+    <title>Car Cost Analyzer - Calculate Your True Cost of Ownership</title>
 </head>
+
 <body>
-    <header>
-        <h1>Car Cost Analyzer</h1>
-		<h2>Calculate the cost that goes into your dream car for the life time of its usage</h2>
-        <!-- This is a comment 
-		<div style="text-align: right;">
-			<div class="button-like">
-				<a href="#home">Home</a>
-				<a href="#maintenance">Maintenance Cost Calc</a>
-				<a href="#operational">Operational Cost Calc</a>
-				<a href="#service">Service Cost Calc</a>
-				<a href="#other">Other Cost Calc</a>
-				<a href="#depreciation">Vehicle Depreciation Calc</a>
-			</div>
-		</div> -->
-    </header>
-    <main>
-        <h2>Basic Info</h2>
-        <section id="home">
-            
-            <p><b>In here you need to enter basic information regarding your vehicle to ensure an accurate calculation</b></p>
-            <form>
-                <label for="carName">Car Name:</label>
-                <input type="text" id="carName" name="carName">
+    <!-- Added landing page section -->
+    <div id="landing-page" class="landing-page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">🚗 CarCalc</div>
+                <button class="nav-button" onclick="scrollToSection('features')">Features</button>
+            </div>
+        </nav>
 
-                <label for="carYear">Car model year:</label>
-                <select name="carYear" id="carYear">
-                    <option value="" disabled selected>Select Year</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2002">2002</option>
-                    <option value="2003">2003</option>
-                    <option value="2004">2004</option>
-                    <option value="2005">2005</option>
-                    <option value="2006">2006</option>
-                    <option value="2007">2007</option>
-                    <option value="2008">2008</option>
-                    <option value="2009">2009</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024" >2024</option>
-                </select>
-
-                <label for="carTransmission">Car transmission type:</label>
-                <select name="carTransmission" id="carTransmission">
-                    <option value="" disabled selected>Select Transmission</option>
-                    <option value="auto">Automatic</option>
-                    <option value="manual">Manual</option>
-                </select>
-
-                <label for="carGas">Car Fuel type:</label>
-                <select name="carGas" id="carGas">
-                    <option value="" disabled selected>Select Fuel Type</option>
-                    <option value="petrol">Petrol</option>
-                    <option value="diesel">Diesel</option>
-                </select>
-
-                <label for="carPrice">Car price (Rs.):</label>
-                <input type="text" id="carPrice" name="carPrice">
-
-                <label for="carYrUse">Number of years planning to use the vehicle:</label>
-                <input type="text" id="carYrUse" name="carYrUse">
-
-                <label for="carTDmonth">Total travel distance per month (KM):</label>
-                <input type="text" id="carTDmonth" name="carTDmonth">
-
-                
-            </form>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Know the True Cost of Your Dream Car</h1>
+                <p>Understand all expenses before you buy. Calculate maintenance, fuel, insurance, and more over the life of your vehicle.</p>
+                <button class="cta-button" onclick="goToCalculator()">Start Calculator</button>
+            </div>
+            <div class="hero-image">
+                <div class="car-illustration">💰</div>
+            </div>
         </section>
-        
-        <h2>Maintenance Cost</h2>
-        <section id="maintenance">
-            <p><b>Maintenance cost is the cost incurred to keep the vehicle in good working condition. This includes regular tyre change, brake pad and liner replacements, transmission fluid, coolant and battery replacements and other routine maintenance tasks.</b></p>
-            <form>
-                <label for="tyreChangeCost">Tyre Change Cost (Rs.):</label>
-                <input type="text" id="tyreChangeCost" name="tyreChangeCost">
 
-                <label for="brakePadLinerCost">Brake Pad & Liner Cost (Rs.):</label>
-                <input type="text" id="brakePadLinerCost" name="brakePadLinerCost">
-
-                <label for="transmissionFluidCost">Transmission Fluid Cost (Rs.):</label>
-                <input type="text" id="transmissionFluidCost" name="transmissionFluidCost">
-
-                <label for="coolantReplaceCost">Coolant replacement Cost (Rs.):</label>
-                <input type="text" id="coolantReplaceCost" name="coolantReplaceCost">
-
-                <label for="batteryReplacementCost">Battery Replacement Cost (Rs.):</label>
-                <input type="text" id="batteryReplacementCost" name="batteryReplacementCost">
-
-                
-            </form>
+        <section id="features" class="features">
+            <h2>Comprehensive Analysis</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>5-Step Wizard</h3>
+                    <p>Easy to follow guided process covering all aspects of car ownership costs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Maintenance Costs</h3>
+                    <p>Track tyres, brakes, fluids, battery and all service expenses</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⛽</div>
+                    <h3>Operational Costs</h3>
+                    <p>Calculate fuel consumption and insurance premiums accurately</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📉</div>
+                    <h3>Depreciation Track</h3>
+                    <p>See year-by-year depreciation and final vehicle value</p>
+                </div>
+            </div>
         </section>
-        
-        <h2>Operational Cost</h2>
-        <section id="operational">
-            <p><b>Operational cost is the cost incurred to operate the vehicle. This includes fuel costs and insurancerelated to using the vehicle.</b></p>
-            <form>
-                <label for="fuelCost">Fuel Cost (Rs.):</label>
-                <input type="text" id="fuelCost" name="fuelCost">
+    </div>
 
-                <label for="fuelEfficiency">Fuel Efficiency (KM/L):</label>
-                <input type="text" id="fuelEfficiency" name="fuelEfficiency">
+    <!-- Updated calculator section with better styling -->
+    <div id="calculator-page" class="calculator-page hidden">
+        <div class="app-container">
+            <header>
+                <button class="back-button" onclick="goToLanding()">← Back</button>
+                <h1>Car Cost Analyzer</h1>
+                <p class="subtitle">Calculate the true cost of your dream car over its lifetime</p>
+            </header>
 
-                <label for="carCostByInsurance">Car cost evaluated by Insurance (Rs.):</label>
-                <input type="text" id="carCostByInsurance" name="carCostByInsurance">
+            <div class="wizard-container">
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    <div class="steps-indicator">
+                        <div class="step active" data-step="1">1</div>
+                        <div class="step" data-step="2">2</div>
+                        <div class="step" data-step="3">3</div>
+                        <div class="step" data-step="4">4</div>
+                        <div class="step" data-step="5">5</div>
+                    </div>
+                </div>
 
-                <label for="insuranceCost">Insurance Cost per year (%):</label>
-                <input type="text" id="insuranceCost" name="insuranceCost">
+                <form id="costForm">
+                    <!-- Step 1: Basic Info -->
+                    <div class="form-step active" id="step1">
+                        <h2>Basic Information</h2>
+                        <p class="step-description">Let's start with the basics of your vehicle.</p>
 
-                
-            </form>
-        </section>
-        
-        <h2>Service Cost</h2>
-        <section id="service">
-            <p><b>Service cost is the cost incurred to service the vehicle. This includes costs related to full service related expenses, vehicle emission test cost and car wash costs.</b></p>
-            <form>
-                <label for="vehicleEmissionCost">Vehicle Emission Test Cost (Rs.): </label>
-                <input type="text" id="vehicleEmissionCost" name="vehicleEmissionCost">
+                        <div class="input-group">
+                            <label for="carName">Car Name</label>
+                            <input type="text" id="carName" name="carName" placeholder="e.g. Toyota Corolla">
+                        </div>
 
-                <label for="serviceCost">Full Service Cost (Rs.):</label>
-                <input type="text" id="serviceCost" name="serviceCost">
+                        <div class="input-group">
+                            <label for="carYear">Model Year</label>
+                            <select name="carYear" id="carYear">
+                                <option value="" disabled selected>Select Year</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
 
-                <label for="carWashCost">Car Wash Cost (Rs.):</label>
-                <input type="text" id="carWashCost" name="carWashCost">
+                        <div class="input-group">
+                            <label for="carTransmission">Transmission</label>
+                            <select name="carTransmission" id="carTransmission">
+                                <option value="" disabled selected>Select Transmission</option>
+                                <option value="auto">Automatic</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                        </div>
 
-                
-            </form>
-        </section>
-        
-        <h2>Other Cost</h2>
-        <section id="other">
-            <p><b>Other costs are additional costs that may not fall under the previous categories. This can include lease payments and other miscellaneous expenses.</b></p>
-            <form>
-                <label for="supplementaryCost">Supplementary Cost (%):</label>
-                <input type="text" id="supplementaryCost" name="supplementaryCost">
+                        <div class="input-group">
+                            <label for="carGas">Fuel Type</label>
+                            <select name="carGas" id="carGas">
+                                <option value="" disabled selected>Select Fuel Type</option>
+                                <option value="petrol">Petrol</option>
+                                <option value="diesel">Diesel</option>
+                            </select>
+                        </div>
 
-                <label for="lease">Lease amount (Rs.):</label>
-                <input type="text" id="lease" name="lease">
+                        <div class="input-group">
+                            <label for="carPrice">Car Price (Rs.)</label>
+                            <input type="number" id="carPrice" name="carPrice" placeholder="0.00">
+                        </div>
 
-                <label for="leaseRate">Lease Rate (%):</label>
-                <input type="text" id="leaseRate" name="leaseRate">
+                        <div class="input-group">
+                            <label for="carYrUse">Planned Usage (Years)</label>
+                            <input type="number" id="carYrUse" name="carYrUse" placeholder="e.g. 5">
+                        </div>
 
-                
-            </form>
-        </section>
-        <center>
-        <input type="submit" value="Calculate car cost" id="calc"> <br><br>
+                        <div class="input-group">
+                            <label for="carTDmonth">Monthly Travel (KM)</label>
+                            <input type="number" id="carTDmonth" name="carTDmonth" placeholder="e.g. 1000">
+                        </div>
 
-        </center>
-        
-        <h2>Vehicle Depreciation</h2>
-        <section id="depreciation"></section>
-        
-        <h2>Final results</h2>
-        <section id="results"></section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Car Cost Calculator</p>
-    </footer>
-    <script src="logic.js"></script>
-    
+                        <div class="buttons">
+                            <button type="button" class="btn-next" onclick="nextStep(1)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Maintenance Cost -->
+                    <div class="form-step" id="step2">
+                        <h2>Maintenance Cost</h2>
+                        <p class="step-description">Estimate the costs to keep your vehicle running smoothly.</p>
+
+                        <div class="input-group">
+                            <label for="tyreChangeCost">Tyre Change Cost (Rs.)</label>
+                            <input type="number" id="tyreChangeCost" name="tyreChangeCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="brakePadLinerCost">Brake Pad & Liner Cost (Rs.)</label>
+                            <input type="number" id="brakePadLinerCost" name="brakePadLinerCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="transmissionFluidCost">Transmission Fluid Cost (Rs.)</label>
+                            <input type="number" id="transmissionFluidCost" name="transmissionFluidCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="coolantReplaceCost">Coolant Replacement Cost (Rs.)</label>
+                            <input type="number" id="coolantReplaceCost" name="coolantReplaceCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="batteryReplacementCost">Battery Replacement Cost (Rs.)</label>
+                            <input type="number" id="batteryReplacementCost" name="batteryReplacementCost"
+                                placeholder="0.00">
+                        </div>
+
+                        <div class="buttons">
+                            <button type="button" class="btn-prev" onclick="prevStep(2)">Previous</button>
+                            <button type="button" class="btn-next" onclick="nextStep(2)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Operational Cost -->
+                    <div class="form-step" id="step3">
+                        <h2>Operational Cost</h2>
+                        <p class="step-description">Daily running costs including fuel and insurance.</p>
+
+                        <div class="input-group">
+                            <label for="fuelCost">Fuel Cost (Rs./L)</label>
+                            <input type="number" id="fuelCost" name="fuelCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="fuelEfficiency">Fuel Efficiency (KM/L)</label>
+                            <input type="number" id="fuelEfficiency" name="fuelEfficiency" placeholder="e.g. 12">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="carCostByInsurance">Insured Value (Rs.)</label>
+                            <input type="number" id="carCostByInsurance" name="carCostByInsurance" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="insuranceCost">Insurance Rate (% per year)</label>
+                            <input type="number" id="insuranceCost" name="insuranceCost" placeholder="e.g. 2.5">
+                        </div>
+
+                        <div class="buttons">
+                            <button type="button" class="btn-prev" onclick="prevStep(3)">Previous</button>
+                            <button type="button" class="btn-next" onclick="nextStep(3)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Service Cost -->
+                    <div class="form-step" id="step4">
+                        <h2>Service Cost</h2>
+                        <p class="step-description">Regular servicing and compliance costs.</p>
+
+                        <div class="input-group">
+                            <label for="vehicleEmissionCost">Emission Test Cost (Rs.)</label>
+                            <input type="number" id="vehicleEmissionCost" name="vehicleEmissionCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="serviceCost">Full Service Cost (Rs.)</label>
+                            <input type="number" id="serviceCost" name="serviceCost" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="carWashCost">Car Wash Cost (Rs.)</label>
+                            <input type="number" id="carWashCost" name="carWashCost" placeholder="0.00">
+                        </div>
+
+                        <div class="buttons">
+                            <button type="button" class="btn-prev" onclick="prevStep(4)">Previous</button>
+                            <button type="button" class="btn-next" onclick="nextStep(4)">Next Step</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Other Cost -->
+                    <div class="form-step" id="step5">
+                        <h2>Other Costs</h2>
+                        <p class="step-description">Leasing and miscellaneous expenses.</p>
+
+                        <div class="input-group">
+                            <label for="supplementaryCost">Supplementary Cost (%)</label>
+                            <input type="number" id="supplementaryCost" name="supplementaryCost" placeholder="e.g. 5">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="lease">Lease Amount (Rs.)</label>
+                            <input type="number" id="lease" name="lease" placeholder="0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="leaseRate">Lease Rate (%)</label>
+                            <input type="number" id="leaseRate" name="leaseRate" placeholder="e.g. 15">
+                        </div>
+
+                        <div class="buttons">
+                            <button type="button" class="btn-prev" onclick="prevStep(5)">Previous</button>
+                            <button type="button" class="btn-submit" id="calc">Calculate Cost</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Results Section -->
+                <div id="results-container" class="hidden">
+                    <h2>Calculation Results</h2>
+                    <div id="results"></div>
+                    <div id="depreciation"></div>
+
+                    <div class="buttons">
+                        <button type="button" class="btn-restart" onclick="goToLanding()">Calculate Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="logc.js"></script>
 </body>
+
 </html>

@@ -1,192 +1,199 @@
+function goToCalculator() {
+  document.getElementById("landing-page").classList.add("hidden")
+  document.getElementById("calculator-page").classList.remove("hidden")
+  window.scrollTo(0, 0)
+}
 
-        // Function to collect all input values
-        function collectInputs(event) {
-            event.preventDefault(); // Prevent the form from submitting and refreshing the page
-    
-            // Home Section Inputs
-            const carName = document.getElementById("carName").value;
-            const carYear = document.getElementById("carYear").value;
-            const carTransmission = document.getElementById("carTransmission").value;
-            const carGas = document.getElementById("carGas").value;
-            const carPrice = document.getElementById("carPrice").value;
-            const carYrUse = document.getElementById("carYrUse").value;
-            const carTDmonth = document.getElementById("carTDmonth").value;
+function goToLanding() {
+  location.reload()
+}
 
-            //home section input cals
-            let yr=carYear;
-            let gas=carGas;
-            let price=parseFloat(carPrice);
-            let n=parseInt(carYrUse);
-            let td_month=parseInt(carTDmonth);
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId)
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" })
+  }
+}
 
-            let td=td_month*12*n;
-            td = td + 1000;
-            let totalMonthlyCost=0.0;
+// Wizard Navigation Logic
+let currentStep = 1
+const totalSteps = 5
 
-    
-            // Maintenance Cost Inputs
-            const tyreChangeCost = document.getElementById("tyreChangeCost").value;
-            const brakePadLinerCost = document.getElementById("brakePadLinerCost").value;
-            const transmissionFluidCost = document.getElementById("transmissionFluidCost").value;
-            const coolantReplaceCost = document.getElementById("coolantReplaceCost").value;
-            const batteryReplacementCost = document.getElementById("batteryReplacementCost").value;
+function updateProgress() {
+  const progress = ((currentStep - 1) / (totalSteps - 1)) * 100
+  document.getElementById("progressBar").style.width = `${progress}%`
 
-            //maintenance cost calcs
-            let ttc=parseFloat(tyreChangeCost);
-            let tbc=parseFloat(brakePadLinerCost);
-            let ttf=parseFloat(transmissionFluidCost);
-            let tcc=parseFloat(coolantReplaceCost);
-            let tbr=parseFloat(batteryReplacementCost);
+  // Update step indicators
+  document.querySelectorAll(".step").forEach((step) => {
+    const stepNum = Number.parseInt(step.dataset.step)
+    if (stepNum < currentStep) {
+      step.classList.add("completed")
+      step.classList.remove("active")
+      step.innerHTML = "✓"
+    } else if (stepNum === currentStep) {
+      step.classList.add("active")
+      step.classList.remove("completed")
+      step.innerHTML = stepNum
+    } else {
+      step.classList.remove("active", "completed")
+      step.innerHTML = stepNum
+    }
+  })
+}
 
-            ttc=ttc*parseInt(td/30000.0);
-            tbc=tbc*parseInt(td/35000.0);
-            ttf=ttf*parseInt(td/30000.0);
-            tcc=tcc*n;
-            tbr=tbr*(n/3.0);
+function showStep(step) {
+  document.querySelectorAll(".form-step").forEach((s) => {
+    s.classList.remove("active")
+  })
+  document.getElementById(`step${step}`).classList.add("active")
+  currentStep = step
+  updateProgress()
+  window.scrollTo(0, 0)
+}
 
-            let tmc=ttc+tbc+ttf+tcc+tbr;
+function validateStep(step) {
+  const currentStepEl = document.getElementById(`step${step}`)
+  const inputs = currentStepEl.querySelectorAll("input, select")
+  let isValid = true
 
-            // Operational Cost Inputs
-            const fuelCost = document.getElementById("fuelCost").value;
-            const fuelEfficiency = document.getElementById("fuelEfficiency").value;
-            const carCostByInsurance = document.getElementById("carCostByInsurance").value;
-            const insuranceCost = document.getElementById("insuranceCost").value;
+  inputs.forEach((input) => {
+    if (!input.value) {
+      isValid = false
+      input.style.borderColor = "#ef4444"
+    } else {
+      input.style.borderColor = "#e2e8f0"
+    }
+  })
 
-            // operational cost calcs
-            let fuel=parseFloat(fuelCost);
-            let distance=parseFloat(fuelEfficiency);
-            let tic=parseFloat(carCostByInsurance);
-            let percentage=parseFloat(insuranceCost);
+  if (!isValid) {
+    alert("Please fill in all fields before proceeding.")
+  }
 
-            let tfc=(parseFloat(td)/distance)*fuel;
-            tic=(tic*percentage/100)*n;
+  return isValid
+}
 
-            let toc=tfc+tic;
-            totalMonthlyCost = totalMonthlyCost + ((parseFloat(td_month)/distance)*fuel) + (parseFloat(tic)/(12.0*n));
+function nextStep(step) {
+  if (validateStep(step)) {
+    if (step < totalSteps) {
+      showStep(step + 1)
+    }
+  }
+}
 
-            // Service Cost Inputs
-            const vehicleEmissionCost = document.getElementById("vehicleEmissionCost").value;
-            const serviceCost = document.getElementById("serviceCost").value;
-            const carWashCost = document.getElementById("carWashCost").value;
+function prevStep(step) {
+  if (step > 1) {
+    showStep(step - 1)
+  }
+}
 
-            // service cost calcs
-            let tet=parseFloat(vehicleEmissionCost);
-            let tfs=parseFloat(serviceCost);
-            let carWash=parseFloat(carWashCost);
-    
-            tet=tet*n;
-            tfs=(parseFloat(td)/5000)*tfs;
-            let tcw=((12*n)-(parseFloat(td)/5000))*carWash;
+// Calculation Logic
+function calculateCost(event) {
+  event.preventDefault()
 
-            let tsc=tet+tfs+tcw;
-            totalMonthlyCost = totalMonthlyCost + (tfs/(12.0*n)) + carWash;
+  if (!validateStep(5)) return
 
-            // Other Cost Inputs
-            const supplementaryCost = document.getElementById("supplementaryCost").value;
-            const lease = document.getElementById("lease").value;
-            const leaseRate = document.getElementById("leaseRate").value;
+  const carYear = document.getElementById("carYear").value
+  const carPrice = Number.parseFloat(document.getElementById("carPrice").value) || 0
+  const carYrUse = Number.parseInt(document.getElementById("carYrUse").value) || 0
+  const carTDmonth = Number.parseInt(document.getElementById("carTDmonth").value) || 0
 
-            // other cost calcs
-            let sc=parseFloat(supplementaryCost);
-            let a=parseFloat(lease);
-            let r=parseFloat(leaseRate);
+  const n = carYrUse
+  const td_month = carTDmonth
+  let td = td_month * 12 * n
+  td = td + 1000
+  let totalMonthlyCost = 0.0
 
-            sc=price*sc/100;
-            sc=sc*0.25*n;
-            let lr=a*r/100;
-            let ls=0.00;
-            ls=ls+(a/(12*n));
-            ls = ls + (lr*(1.0/(12*n)));
+  const tyreChangeCost = Number.parseFloat(document.getElementById("tyreChangeCost").value) || 0
+  const brakePadLinerCost = Number.parseFloat(document.getElementById("brakePadLinerCost").value) || 0
+  const transmissionFluidCost = Number.parseFloat(document.getElementById("transmissionFluidCost").value) || 0
+  const coolantReplaceCost = Number.parseFloat(document.getElementById("coolantReplaceCost").value) || 0
+  const batteryReplacementCost = Number.parseFloat(document.getElementById("batteryReplacementCost").value) || 0
 
-            let totherc=sc+lr+a;
-            totalMonthlyCost = totalMonthlyCost + ls + (sc/3.0);
+  const ttc = tyreChangeCost * Number.parseInt(td / 30000.0)
+  const tbc = brakePadLinerCost * Number.parseInt(td / 35000.0)
+  const ttf = transmissionFluidCost * Number.parseInt(td / 30000.0)
+  const tcc = coolantReplaceCost * n
+  const tbr = batteryReplacementCost * (n / 3.0)
 
-            //calculating the vehicle depreciation
-            let cd = parseFloat(price);
-            let d = [15,10,10,5,5,3,3,2,2,1];
+  const tmc = ttc + tbc + ttf + tcc + tbr
 
-            //get the section to update
-            let depsec = document.getElementById("depreciation");
-            depsec.innerHTML =  "<p><b>Vehicle Depreciation over the years: </b></p><ul>";
-            for (i=0; i<n; i++){
-                cd=cd-(cd*d[i]/100);
-                depsec.innerHTML += `<li>Depreciation for year ${i+1} : Rs. ${cd.toFixed(2)}</li>`;
-            }
-            depsec.innerHTML += `</ul><p><b> Final depreciated value of vehicle: Rs. ${cd.toFixed(2)}</b></p>`; 
-            //${cd.toFixed(2)} this is to make 2 decimal places are printed, to use it instead of "" use ``
+  const fuelCost = Number.parseFloat(document.getElementById("fuelCost").value) || 0
+  const fuelEfficiency = Number.parseFloat(document.getElementById("fuelEfficiency").value) || 1
+  const carCostByInsurance = Number.parseFloat(document.getElementById("carCostByInsurance").value) || 0
+  const insuranceCost = Number.parseFloat(document.getElementById("insuranceCost").value) || 0
 
-            // Display the results in the "results" section
-            let res = document.getElementById("results");
-            let sum = tmc + toc + tsc + totherc;
-            let totalMonthlyCost2 = totalMonthlyCost - ls;
-            res.innerHTML = `
-                <p><b>Final cost: </b></p>
-                <ul>
-                    <li>Total Cost for vehicle for ${n} years: Rs. ${sum.toFixed(2)}</li>
-                    <li>Lease settlement for 1 month: Rs. ${ls.toFixed(2)}</li>
-                    <li>Monthly cost for vehicle: Rs. ${totalMonthlyCost.toFixed(2)}</li>
-                    <li>Monthly cost for vehicle without lease settlement: Rs. ${totalMonthlyCost2.toFixed(2)}</li>
-                    <li>Car value left after ${n} years: Rs. ${cd.toFixed(2)}</li>
-                </ul>
-                <p><b>Thank you for using our service!</b></p>
-                `;
+  const fuel = fuelCost
+  const distance = fuelEfficiency
+  let tic = carCostByInsurance
+  const percentage = insuranceCost
 
-            // Log all collected values (for debugging or further processing)
-            /*console.log({
-                carName,
-                carYear,
-                carTransmission,
-                carGas,
-                carPrice,
-                carYrUse,
-                carTDmonth,
-                tyreChangeCost,
-                brakePadLinerCost,
-                transmissionFluidCost,
-                coolantReplaceCost,
-                batteryReplacementCost,
-                fuelCost,
-                fuelEfficiency,
-                carCostByInsurance,
-                insuranceCost,
-                vehicleEmissionCost,
-                serviceCost,
-                carWashCost,
-                supplementaryCost,
-                lease,
-                leaseRate
-            });*/
-    
-            // Optionally, display the collected data in the "results" section
-            /*const resultsSection = document.getElementById("results");
-            resultsSection.innerHTML = `
-                <h3>Collected Data:</h3>
-                <pre>${JSON.stringify({
-                    carName,
-                    carYear,
-                    carTransmission,
-                    carGas,
-                    carPrice,
-                    carYrUse,
-                    carTDmonth,
-                    tyreChangeCost,
-                    brakePadLinerCost,
-                    transmissionFluidCost,
-                    coolantReplaceCost,
-                    batteryReplacementCost,
-                    fuelCost,
-                    fuelEfficiency,
-                    carCostByInsurance,
-                    insuranceCost,
-                    vehicleEmissionCost,
-                    serviceCost,
-                    carWashCost,
-                    supplementaryCost,
-                    lease,
-                    leaseRate
-                }, null, 2)}</pre>
-            `;*/
-        }
-    
-        // Attach the function to the submit button of all forms
-        document.getElementById("calc").addEventListener("click", collectInputs);
+  const tfc = (Number.parseFloat(td) / distance) * fuel
+  tic = ((tic * percentage) / 100) * n
+
+  const toc = tfc + tic
+  totalMonthlyCost =
+    totalMonthlyCost + (Number.parseFloat(td_month) / distance) * fuel + Number.parseFloat(tic) / (12.0 * n)
+
+  const vehicleEmissionCost = Number.parseFloat(document.getElementById("vehicleEmissionCost").value) || 0
+  const serviceCost = Number.parseFloat(document.getElementById("serviceCost").value) || 0
+  const carWashCost = Number.parseFloat(document.getElementById("carWashCost").value) || 0
+
+  const tet = vehicleEmissionCost * n
+  const tfs = (Number.parseFloat(td) / 5000) * serviceCost
+  const tcw = (12 * n - Number.parseFloat(td) / 5000) * carWashCost
+
+  const tsc = tet + tfs + tcw
+  totalMonthlyCost = totalMonthlyCost + tfs / (12.0 * n) + carWashCost
+
+  const supplementaryCost = Number.parseFloat(document.getElementById("supplementaryCost").value) || 0
+  const lease = Number.parseFloat(document.getElementById("lease").value) || 0
+  const leaseRate = Number.parseFloat(document.getElementById("leaseRate").value) || 0
+
+  let sc = (carPrice * supplementaryCost) / 100
+  sc = sc * 0.25 * n
+  const lr = (lease * leaseRate) / 100
+  let ls = 0.0
+  ls = ls + lease / (12 * n)
+  ls = ls + lr * (1.0 / (12 * n))
+
+  const totherc = sc + lr + lease
+  totalMonthlyCost = totalMonthlyCost + ls + sc / 3.0
+
+  let cd = carPrice
+  const d = [15, 10, 10, 5, 5, 3, 3, 2, 2, 1]
+
+  const depsec = document.getElementById("depreciation")
+  let depHtml = "<h3>Vehicle Depreciation over the years:</h3><ul>"
+  for (let i = 0; i < n; i++) {
+    cd = cd - (cd * d[i]) / 100
+    depHtml += `<li><span>Year ${i + 1}</span> <span>Rs. ${cd.toFixed(2)}</span></li>`
+  }
+  depHtml += `<li><span>Final Value</span> <span>Rs. ${cd.toFixed(2)}</span></li></ul>`
+  depsec.innerHTML = depHtml
+
+  const res = document.getElementById("results")
+  const sum = tmc + toc + tsc + totherc
+  const totalMonthlyCost2 = totalMonthlyCost - ls
+
+  res.innerHTML = `
+        <ul>
+            <li><span>Total Cost (${n} years)</span> <span>Rs. ${sum.toFixed(2)}</span></li>
+            <li><span>Monthly Lease</span> <span>Rs. ${ls.toFixed(2)}</span></li>
+            <li><span>Total Monthly Cost</span> <span>Rs. ${totalMonthlyCost.toFixed(2)}</span></li>
+            <li><span>Monthly Cost (No Lease)</span> <span>Rs. ${totalMonthlyCost2.toFixed(2)}</span></li>
+            <li><span>Final Car Value</span> <span>Rs. ${cd.toFixed(2)}</span></li>
+        </ul>
+    `
+
+  document.getElementById("costForm").style.display = "none"
+  document.querySelector(".progress-container").style.display = "none"
+  document.getElementById("results-container").classList.remove("hidden")
+  window.scrollTo(0, 0)
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  updateProgress()
+
+  document.getElementById("calc").addEventListener("click", calculateCost)
+})
